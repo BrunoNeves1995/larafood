@@ -37,7 +37,7 @@ services:
     image: mysql:8.0.33
     restart: always
     ports:
-      - 3307:3306
+      - 3308:3306
     volumes:
       - ./.docker/mysql/:/var/lib/mysql
     environment:

@@ -3,7 +3,7 @@
 @section('title', 'planos')
 
 @section('content_header')
-    <h1>Planos</h1>
+    <h1>Planos <a href="{{ route('plans.create')}}" class="btn btn-dark btn-sm">Adicionar</a></h1>
 @stop
 
 @section('content')
@@ -12,7 +12,7 @@
             #filtros
         </div>
         <div class="card-body">
-            <table class="table table-condensed">
+            <table class="table table-dark table-striped">
                 <tr>
                     <th>Nome</th>
                     <th>Preço</th>
@@ -23,7 +23,7 @@
                         <tr>
                             <th>{{$plan->name}}</th>
                             <th>{{$plan->price}}</th>
-                            <th><a href="" class="btn btn-warning">Detalhes</a></th>
+                            <th><a href="" class="btn btn-warning btn-sm">Detalhes</a></th>
                         </tr>
                     @endforeach
                 </tbody>

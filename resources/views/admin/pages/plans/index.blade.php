@@ -12,8 +12,8 @@
             #filtros
         </div>
         <div class="card-body">
-            <table class="table table-dark table-striped">
-                <tr>
+            <table class="table ">
+                <tr class="table table-dark">
                     <th>Nome</th>
                     <th>Preço</th>
                     <th width="30">Ações</th>

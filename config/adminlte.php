@@ -295,6 +295,7 @@ return [
             'type'         => 'Planos',
             'url'          => 'admin/plans',
             'text'         => 'Planos',
+            'icon'         => 'fas fa-list-alt'
             // 'topnav_right' => true,
         ],
 

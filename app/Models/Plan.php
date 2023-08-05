@@ -12,9 +12,13 @@ class Plan extends Model
     protected $table = 'plans';
     protected $fillable = ['name', 'url', 'price', 'description'];
 
-    public function search($filters = null)
+    public function details()
     {
+        return $this->hasMany(DetailPlan::class);
+    }
 
+    public function search($filters = null)
+    {   
         $results = $this->where('name', 'like', "%{$filters}%")
             ->orWhere('description', 'like', "%{$filters}%")
             ->paginate(1);

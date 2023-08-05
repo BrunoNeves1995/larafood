@@ -5,7 +5,7 @@
 @section('content_header')
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-        <li class="breadcrumb-item" class="active"><a href="{{ route('plans.index') }}">Planos</a></li>
+        <li class="breadcrumb-item active" class="active"><a href="{{ route('plans.index') }}">Planos</a></li>
     </ol>
 
     <h1>Planos <a href="{{ route('plans.create')}}" class="btn btn-dark btn-sm" >Adicionar <i class="fas fa-plus fa-flip-horizontal" style="color: #2e4b57;"></i></a></h1>
@@ -25,7 +25,7 @@
                 <tr>
                     <th>Nome</th>
                     <th>Preço</th>
-                    <th width=160>Ações</th>
+                    <th width=229>Ações</th>
                 </tr>
                 <tbody>
                     @foreach ($plans as $plan)
@@ -33,8 +33,9 @@
                             <th>{{$plan->name}}</th>
                             <th>R$ {{number_format($plan->price, 2, ',', '.')}}</th>
                             <th >
-                                <a href="{{ route('plans.show', $plan->id)}}" class="btn btn-warning btn-sm me-md-2">Detalhes</a>
-                                <a href="{{ route('plans.edit', $plan->id)}}" class="btn btn-info btn-sm me-md-2">Alterar</a>
+                                <a href="{{ route('plans.details.index', $plan->id)}}" class="btn btn-info btn-sm me-md-2">Detalhes Plano</a>
+                                <a href="{{ route('plans.show', $plan->id)}}" class="btn btn-secondary btn-sm me-md-2">Ver</a>
+                                <a href="{{ route('plans.edit', [$plan->id])}}" class="btn btn-warning btn-sm me-md-2">Editar</a>
                               </th>
                             
                         </tr>
@@ -45,10 +46,8 @@
         {{-- Exibe a paginação --}}
         <div class="card--footer">
             @if (isset($filters))
-            sim
                 {!! $plans->appends($filters)->links() !!}
             @else
-            nao
                 {!! $plans->links() !!}
             @endif
         </div>

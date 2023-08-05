@@ -3,13 +3,22 @@
 @section('title', 'planos')
 
 @section('content_header')
+    <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
+            <li class="breadcrumb-item" class="active"><a href="{{ route('plans.index') }}">Planos</a></li>
+    </ol>
+
     <h1>Planos <a href="{{ route('plans.create')}}" class="btn btn-dark btn-sm">Adicionar</a></h1>
-@stop
+    @stop
 
 @section('content')
     <div class="card">
         <div class="card-header">
-            #filtros
+            <form action="{{ route('plans.search') }}" method="POST" class="form form-inline">
+                @csrf
+                <input style="width:300px" type="text" name="filter" placeholder="Nome" class="form-control" value="{{$filters['filter'] ?? '' }}">
+                <button type="submit" class="btn btn-dark">Filtrar</button>
+            </form>
         </div>
         <div class="card-body">
             <table class="table ">
@@ -29,8 +38,14 @@
                 </tbody>
             </table>
         </div>
+        {{-- Exibe a paginação --}}
         <div class="card--footer">
-            {!! $plans->links() !!}
+            @if (isset($filters))
+                {!! $plans->appends('filters')->links() !!}
+            @else
+                nao
+                {!! $plans->links() !!}
+            @endif
         </div>
     </div>
 @stop

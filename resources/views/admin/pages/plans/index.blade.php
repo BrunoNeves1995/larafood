@@ -21,11 +21,11 @@
             </form>
         </div>
         <div class="card-body">
-            <table class="table ">
-                <tr class="table table-dark">
+            <table class="table table-dark table-hover">
+                <tr>
                     <th>Nome</th>
                     <th>Preço</th>
-                    <th width="30">Ações</th>
+                    <th width=50>Ações</th>
                 </tr>
                 <tbody>
                     @foreach ($plans as $plan)
@@ -33,6 +33,7 @@
                             <th>{{$plan->name}}</th>
                             <th>R$ {{number_format($plan->price, 2, ',', '.')}}</th>
                             <th><a href="{{ route('plans.show', $plan->id)}}" class="btn btn-warning btn-sm">Detalhes</a></th>
+                            <th><a href="{{ route('plans.edit', $plan->id)}}" class="btn btn-warning btn-sm">Alterar</a></th>
                         </tr>
                     @endforeach
                 </tbody>
@@ -43,7 +44,6 @@
             @if (isset($filters))
                 {!! $plans->appends('filters')->links() !!}
             @else
-                nao
                 {!! $plans->links() !!}
             @endif
         </div>

@@ -46,6 +46,30 @@ class PlanController extends Controller
         return view('admin.pages.plans.show', compact('plan'));
     }
 
+    public function edit(int|string $id)
+    {
+        $plan = $this->repository->find($id);
+
+        if (!$plan){
+            return redirect()->back();
+        }
+        
+        return view('admin.pages.plans.edit', compact('plan'));
+    }
+
+    public function update(Request $request, int|string $id)
+    {
+        $plan = $this->repository->find($id);
+
+        if (!$plan){
+            return redirect()->back();
+        }
+        
+        $plan->fill($request->all());
+        $plan->save();
+        return redirect()->route('plans.index');
+    }
+
     public function destroy(int|string $id)
     {
         $plan = $this->repository->find($id);

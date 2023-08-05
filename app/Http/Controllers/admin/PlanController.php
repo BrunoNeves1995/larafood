@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdatePlan;
 use App\Models\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -26,7 +27,7 @@ class PlanController extends Controller
         return view('admin.pages.plans.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdatePlan $request)
     {   
         $data = $request->all();
         $data['url'] = Str::kebab($data['name']);
@@ -57,7 +58,7 @@ class PlanController extends Controller
         return view('admin.pages.plans.edit', compact('plan'));
     }
 
-    public function update(Request $request, int|string $id)
+    public function update(StoreUpdatePlan $request, int|string $id)
     {
         $plan = $this->repository->find($id);
 

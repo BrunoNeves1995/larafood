@@ -8,20 +8,6 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            {{-- <ul>
-                <li>
-                    <strong>Nome:</strong> {{ $plan->name}}
-                </li>
-                <li>
-                    <strong>Url:</strong> {{$plan->url}}
-                </li>
-                <li>
-                    <strong>Preço:</strong> {{ number_format($plan->price, 2, ',', '.')}}
-                </li>
-                <li>
-                    <strong>Descrição:</strong> {{$plan->description}}
-                </li>
-            </ul> --}}
             <table class="table">
                 <tr class="table-dark">
                     <th>Nome</th>
@@ -41,7 +27,7 @@
             <form action="{{route('plans.destroy', $plan->id)}}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button style="width: 100" type="submit" class="btn btn-danger btn-sm">DELETAR O PLANO <i class="fas fa-trash fa-flip-horizontal" style="color: #ca4343;"></i></button>
+                <button style="width: 100" type="submit" class="btn btn-dark btn-sm">DELETAR O PLANO <i class="fas fa-trash fa-flip-horizontal" style="color: #2e4b57;"></i></button>
             </form>
         </div>
     </div>

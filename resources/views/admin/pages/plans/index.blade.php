@@ -45,8 +45,10 @@
         {{-- Exibe a paginação --}}
         <div class="card--footer">
             @if (isset($filters))
-                {!! $plans->appends('filters')->links() !!}
+            sim
+                {!! $plans->appends($filters)->links() !!}
             @else
+            nao
                 {!! $plans->links() !!}
             @endif
         </div>

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdateDetailPlan;
 use App\Models\DetailPlan;
 use App\Models\Plan;
-use Illuminate\Http\Request;
 
 class DetailPlanController extends Controller
 {   
@@ -37,7 +37,7 @@ class DetailPlanController extends Controller
         return view('admin.pages.plans.details.create', compact('plan'));
     }
 
-    public function store(Request $request, int|string $id)
+    public function store(StoreUpdateDetailPlan $request, int|string $id)
     {   
         if (!$plan = $this->repositoryPlan->find($id)) {
             return redirect()->back();
@@ -59,7 +59,7 @@ class DetailPlanController extends Controller
 
     }
 
-    public function update(Request $request, int|string $idPlan, int|string $id)
+    public function update(StoreUpdateDetailPlan $request, int|string $idPlan, int|string $id)
     {
         $plan = $this->repositoryPlan->find($idPlan);
         $detail = $this->repository->find($id);

@@ -16,6 +16,9 @@
 @section('content')
     <div class="card">
         <div class="card-body">
+
+            @include('admin.includes.alert')
+            
             <table class="table table-dark table-hover">
                 <tr>
                     <th>Nome</th>

@@ -10,7 +10,7 @@
         <li class="breadcrumb-item active" class="active"><a href="{{ route('plans.details.index', [$plan->id, $details['data'][0]['id']]) }}">Detalhes</a></li>
     </ol>
 
-    <h1>Detalhes do Planos <strong>#{{$plan->name}}</strong> <a href="{{ route('plans.details.create', [$plan->id, $details['data'][0]['id']])}}" class="btn btn-dark btn-sm" >Adicionar <i class="fas fa-plus fa-flip-horizontal" style="color: #2e4b57;"></i></a></h1>
+    <h1>Detalhes do Planos <strong>#{{$plan->name}}</strong> <a href="{{ route('plans.details.create', [$plan->id])}}" class="btn btn-dark btn-sm" >Adicionar <i class="fas fa-plus fa-flip-horizontal" style="color: #2e4b57;"></i></a></h1>
     @stop
 
 @section('content')
@@ -19,7 +19,7 @@
             <table class="table table-dark table-hover">
                 <tr>
                     <th>Nome</th>
-                    <th width=160>Ações</th>
+                    <th width=117>Ações</th>
                 </tr>
                 <tbody>
                     @foreach ($plan->details as $detail)

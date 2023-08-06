@@ -298,6 +298,13 @@ return [
             'icon'         => 'fas fa-list-alt'
             // 'topnav_right' => true,
         ],
+        [
+            'type'         => 'Perfis',
+            'url'          => 'admin/perfis',
+            'text'         => 'Perfis',
+            'icon'         => 'fas fa-address-card'
+            // 'topnav_right' => true,
+        ],
 
     //     // Sidebar items:
     //     [

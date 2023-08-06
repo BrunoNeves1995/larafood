@@ -24,6 +24,9 @@
                         </tr>
                 </tbody>
             </table>
+
+            @include('admin.includes.alert')
+            
             <form action="{{route('plans.destroy', $plan->id)}}" method="POST">
                 @csrf
                 @method('DELETE')

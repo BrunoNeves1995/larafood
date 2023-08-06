@@ -71,11 +71,16 @@ class PlanController extends Controller
 
     public function destroy(int|string $id)
     {
-        $plan = $this->repository->find($id);
+        $plan = $this->repository->with('details')->find($id);
 
         if (!$plan){
             return redirect()->back();
         }
+        if($plan->details->count() > 0){
+            return redirect()
+                ->back()
+                ->with('error', 'Existem detalhes vinculado a esse plano, portanto não podemos deletar o plano agora!');
+        };
         $plan->delete();
     
         return redirect()->route('plans.index');

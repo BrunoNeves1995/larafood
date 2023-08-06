@@ -300,7 +300,7 @@ return [
         ],
         [
             'type'         => 'Perfis',
-            'url'          => 'admin/perfis',
+            'url'          => 'admin/profiles',
             'text'         => 'Perfis',
             'icon'         => 'fas fa-address-card'
             // 'topnav_right' => true,

@@ -22,9 +22,29 @@ class DetailPlanController extends Controller
            return redirect()->back();
         }
         $details = $plan->details()->paginate()->toArray();
-        // dd($details['data'][0]['id']);
+        // dd($details);
         
         return view('admin.pages.plans.details.index', compact('plan', 'details'));
+
+    }
+
+    public function create(int|string $id)
+    {   
+        if (!$plan = $this->repositoryPlan->find($id)) {
+            return redirect()->back();
+         }
+
+        return view('admin.pages.plans.details.create', compact('plan'));
+    }
+
+    public function store(Request $request, int|string $id)
+    {   
+        if (!$plan = $this->repositoryPlan->find($id)) {
+            return redirect()->back();
+         }
+
+         $plan->details()->create($request->all());
+        return redirect()->route('plans.details.index', $plan->id);
 
     }
 }

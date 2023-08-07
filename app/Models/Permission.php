@@ -11,6 +11,15 @@ class Permission extends Model
     protected $table = 'permissions';
     protected $fillable = ['name', 'description'];
 
+    /** 
+     * Get Profiles
+    */
+    public function profiles()
+    {
+        return $this->belongsToMany(Profile::class);
+    }
+
+
     public function search($filters = null)
     {   
         $results = $this->where('name', 'like', "%{$filters}%")

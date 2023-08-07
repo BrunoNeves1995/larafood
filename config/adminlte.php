@@ -305,6 +305,13 @@ return [
             'icon'         => 'fas fa-address-card'
             // 'topnav_right' => true,
         ],
+        [
+            'type'         => 'Permissões',
+            'url'          => 'admin/permissions',
+            'text'         => 'Permissões',
+            'icon'         => 'fas fa-lock'
+            // 'topnav_right' => true,
+        ],
 
     //     // Sidebar items:
     //     [

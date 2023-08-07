@@ -11,4 +11,13 @@ class Profile extends Model
 
     protected $table = 'profiles';
     protected $fillable = ['name', 'description'];
+
+    public function search($filters = null)
+    {   
+        $results = $this->where('name', 'like', "%{$filters}%")
+            ->orWhere('description', 'like', "%{$filters}%")
+            ->paginate(1);
+        
+        return $results;
+    }
 }

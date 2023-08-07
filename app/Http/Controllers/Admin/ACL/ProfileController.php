@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\ACL;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateProfile;
 use App\Models\Profile;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {   
@@ -92,5 +93,13 @@ class ProfileController extends Controller
         $profile->delete();
         return redirect()
         ->route('profiles.index');
+    }
+
+    public function search(Request $request)
+    {   
+        $filters = $request->except('_token');
+       $profiles = $this->repository->search($request->filter);
+
+       return view('admin.pages.profiles.index', compact('profiles', 'filters'));
     }
 }

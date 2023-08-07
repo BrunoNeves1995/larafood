@@ -53,17 +53,28 @@ class ProfileController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Profile $profile)
+    public function edit(int|string $id)
     {
-        //
+        if (!$profile = $this->repository->find($id)) {
+           return redirect()->back();
+        }
+
+        return view('admin.pages.profiles.edit', compact('profile'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Profile $profile)
+    public function update(Request $request, int|string $id)
     {
-        //
+        if (!$profile = $this->repository->find($id)) {
+            return redirect()->back();
+        }
+
+        $profile->fill($request->all());
+        $profile->save();
+
+        return redirect()->route('profiles.index');
     }
 
     /**

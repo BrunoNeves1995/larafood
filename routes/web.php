@@ -10,13 +10,20 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->group(function () {
 
     /* *
-    *   Routes Permissions x Profiles
+    *   Routes Profiles x Permissions 
     */
     Route::post('profiles/{profile}/permissions', [PermissionProfileController::class, 'addProfilePermission'])->name('profiles.permissions.store');
     Route::get('profiles/{profile}/permissions', [PermissionProfileController::class, 'permissions'])->name('profiles.permissions.index');
     Route::get('profiles/{profile}/permissions/create', [PermissionProfileController::class, 'permissionsAvailable'])->name('profiles.permissions.create');
     Route::any('profiles/{profile}/permissions/create/search', [PermissionProfileController::class, 'filterPermissionsAvailable'])->name('profiles.permissions.search');
     Route::get('profiles/{profile}/permissions/{permission}/detach', [PermissionProfileController::class, 'detachProfilePermission'])->name('profiles.permissions.detach');
+
+     /* *
+    *   Routes Profiles x Permissions 
+    */
+    Route::get('permissions/{permission}/profiles', [PermissionProfileController::class, 'profiles'])->name('permissions.profiles.index');
+    Route::get('permissions/{permission}/profiles{profile}/detach', [PermissionProfileController::class, 'detachPermissionProfile'])->name('permissions.profiles.detach');
+    Route::any('permissions{permission}/profiles/search', [PermissionProfileController::class, 'filterProfilesAvailable'])->name('permissions.profiles.search');
 
     /* *
     *   Routes Permissions

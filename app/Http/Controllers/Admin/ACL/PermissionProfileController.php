@@ -18,7 +18,7 @@ class PermissionProfileController extends Controller
 
 
     /** 
-     * Lists the permissions of one profile 
+     * lista as permissões vinculadas a um perfil
     */
     public function permissions(int|string $idProfile)
     {   
@@ -31,6 +31,23 @@ class PermissionProfileController extends Controller
         $permissions = $profile->permissions()->paginate();
 
         return view('admin.pages.profiles.permissions.permission', compact('profile', 'permissions'));
+    }   
+
+    /** 
+     * Lista os perfis vinculado a uma permissão
+    */
+    public function profiles(int|string $idPermission)
+    {   
+        $permission = $this->repositoryPermission->find($idPermission);
+
+        if (!$permission) {
+            return redirect()->back();
+        }
+
+        $profiles = $permission->profiles()->paginate();
+
+        
+        return view('admin.pages.permissions.profiles.profile', compact('permission', 'profiles'));
     }
 
     /** 
@@ -79,6 +96,20 @@ class PermissionProfileController extends Controller
         return redirect()->route('profiles.permissions.index', $profile->id);
     }
 
+    public function detachPermissionProfile(int|string $idPermission, int|string $idProfile) 
+    {   
+        $permission = $this->repositoryPermission->find($idPermission);
+        $profile = $this->repositoryProfile->find($idProfile);
+
+        if (!$permission || !$profile) {
+            return redirect()->back();
+        }
+
+        $permission->profiles()->detach([$permission->id, $profile->id]);
+
+        return redirect()->route('permissions.profiles.index', $permission->id);
+    }
+
     public function filterPermissionsAvailable(Request $request, int|string $idProfile)
     {   
         $profile = $this->repositoryProfile->find($idProfile);
@@ -86,5 +117,14 @@ class PermissionProfileController extends Controller
         $permissions = $this->repositoryProfile->filterPermissionsAvailableSearch($idProfile, $request->filter);
 
         return view('admin.pages.profiles.permissions.available', compact('profile', 'permissions', 'filters'));
+    }
+
+    public function filterProfilesAvailable(Request $request, int|string $idPermission)
+    {   
+        $permission = $this->repositoryPermission->find($idPermission);
+        $filters = $request->except('_token');
+        $profiles = $this->repositoryPermission->filterProfilesAvailableSearch($request->filter, $idPermission);
+
+        return view('admin.pages..permissions.profiles.profile', compact('profiles', 'permission', 'filters'));
     }
 }

@@ -98,7 +98,7 @@ class ProfileController extends Controller
     public function search(Request $request)
     {   
         $filters = $request->except('_token');
-       $profiles = $this->repository->search($request->filter);
+        $profiles = $this->repository->search($request->filter);
 
        return view('admin.pages.profiles.index', compact('profiles', 'filters'));
     }

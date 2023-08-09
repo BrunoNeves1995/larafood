@@ -12,8 +12,11 @@ Route::prefix('admin')->group(function () {
     /* *
     *   Routes Permissions x Profiles
     */
-
-    Route::get('profiles/{profile}/permissions', [PermissionProfileController::class, 'permissions'])->name('profiles.permissions');
+    Route::post('profiles/{profile}/permissions', [PermissionProfileController::class, 'addProfilePermission'])->name('profiles.permissions.store');
+    Route::get('profiles/{profile}/permissions', [PermissionProfileController::class, 'permissions'])->name('profiles.permissions.index');
+    Route::get('profiles/{profile}/permissions/create', [PermissionProfileController::class, 'permissionsAvailable'])->name('profiles.permissions.create');
+    Route::any('profiles/{profile}/permissions/create/search', [PermissionProfileController::class, 'filterPermissionsAvailable'])->name('profiles.permissions.search');
+    Route::get('profiles/{profile}/permissions/{permission}/detach', [PermissionProfileController::class, 'detachProfilePermission'])->name('profiles.permissions.detach');
 
     /* *
     *   Routes Permissions

@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->group(function () {
 
     /* *
+    *   Routes Profiles x plans 
+    */
+    Route::get('profiles/{profile}/plans', [PlanProfileController::class, 'permissions'])->name('profiles.permissions.index');
+
+    /* *
     *   Routes Profiles x Permissions 
     */
     Route::post('profiles/{profile}/permissions', [PermissionProfileController::class, 'addProfilePermission'])->name('profiles.permissions.store');
@@ -19,7 +24,7 @@ Route::prefix('admin')->group(function () {
     Route::get('profiles/{profile}/permissions/{permission}/detach', [PermissionProfileController::class, 'detachProfilePermission'])->name('profiles.permissions.detach');
 
      /* *
-    *   Routes Profiles x Permissions 
+    *   Routes Permissions x  Profiles
     */
     Route::get('permissions/{permission}/profiles', [PermissionProfileController::class, 'profiles'])->name('permissions.profiles.index');
     Route::get('permissions/{permission}/profiles{profile}/detach', [PermissionProfileController::class, 'detachPermissionProfile'])->name('permissions.profiles.detach');

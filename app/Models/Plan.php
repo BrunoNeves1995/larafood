@@ -18,6 +18,11 @@ class Plan extends Model
         return $this->hasMany(DetailPlan::class);
     }
 
+    public function profiles() : HasMany
+    {
+        return $this->hasMany(Profile::class);
+    }
+
     public function search($filters = null)
     {   
         $results = $this->where('name', 'like', "%{$filters}%")

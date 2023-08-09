@@ -5,14 +5,19 @@ use App\Http\Controllers\Admin\ACL\PermissionProfileController;
 use App\Http\Controllers\Admin\ACL\ProfileController;
 use App\Http\Controllers\Admin\DetailPlanController;
 use App\Http\Controllers\Admin\PlanController;
+use App\Http\Controllers\PlanProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->group(function () {
 
     /* *
-    *   Routes Profiles x plans 
+    *   Routes Plans x Profiles 
     */
-    Route::get('profiles/{profile}/plans', [PlanProfileController::class, 'permissions'])->name('profiles.permissions.index');
+    Route::get('profiles/{profile}/plans', [PlanProfileController::class, 'plans'])->name('profiles.plans.index');
+    Route::get('profiles/{profile}/plans/create', [PlanProfileController::class, 'plansAvailable'])->name('profiles.plans.create');
+    Route::post('profiles/{profile}/plans', [PlanProfileController::class, 'addProfilePermission'])->name('profiles.plans.store');
+    Route::any('profiles/{profile}/plans/create/search', [PlanProfileController::class, 'filterplansAvailable'])->name('profiles.plans.search');
+    Route::get('profiles/{profile}/plans/{permission}/detach', [PlanProfileController::class, 'detachProfilePermission'])->name('profiles.plans.detach');
 
     /* *
     *   Routes Profiles x Permissions 

@@ -49,7 +49,6 @@ class Plan extends Model
     public function filterPlansAvailableSearch($idPlan, $filter = null)
     {   
         if ($filter) {
-            echo 'filtro';
             $profiles = Profile::whereIn('id', function($query) use ($idPlan) {
                 $query->select("profile_id");
                 $query->from("plan_profile");
@@ -61,7 +60,6 @@ class Plan extends Model
                 })
                 ->paginate(4);
         } else {
-            echo ' sem filtro';
             $profiles = Profile::whereIn('id', function($query) use ($idPlan) {
                 $query->select("profile_id");
                 $query->from("plan_profile");

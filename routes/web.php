@@ -16,7 +16,7 @@ Route::prefix('admin')->group(function () {
     Route::get('plans/{plans}/profiles', [PlanProfileController::class, 'profiles'])->name('plans.profiles.index');
     Route::get('plans/{plans}/profiles/create', [PlanProfileController::class, 'profileUnlinkedPlan'])->name('plans.profiles.create');
     Route::post('plans/{plans}/profiles', [PlanProfileController::class, 'addProfilePlan'])->name('plans.profiles.store');
-    Route::any('plans/{plans}/profiles/create/search', [PlanProfileController::class, 'filterprofilesAvailable'])->name('plans.profiles.search');
+    Route::any('plans/{plans}/profiles/create/search', [PlanProfileController::class, 'filterProfilesAvailable'])->name('plans.profiles.search');
     Route::get('plans/{plans}/profiles/{profiles}/detach', [PlanProfileController::class, 'detachProfilePlan'])->name('plans.profiles.detach');
 
     /* *

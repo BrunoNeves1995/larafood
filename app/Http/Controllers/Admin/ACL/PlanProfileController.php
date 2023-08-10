@@ -51,13 +51,13 @@ class PlanProfileController extends Controller
     /** 
      * unlinked the profile from plan 
     */
-    public function filterprofilesAvailable(Request $request, int|string $idplan)
+    public function filterProfilesAvailable(Request $request, int|string $idplan)
     {   
         $plan = $this->repositoryplan->find($idplan);
         $filters = $request->except('_token');
-        $profiles = $this->repositoryplan->filterprofilesAvailableSearch($idplan, $request->filter);
+        $profiles = $this->repositoryplan->filterPlansAvailableSearch($idplan, $request->filter);
 
-        return view('admin.pages.plans.profiles.available', compact('plan', 'profiles', 'filters'));
+        return view('admin.pages.plans.profiles.profile', compact('plan', 'profiles', 'filters'));
     }
 
 

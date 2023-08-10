@@ -47,20 +47,35 @@ class Plan extends Model
     * Get plan linked with this profile
     */
     public function filterPlansAvailableSearch($idPlan, $filter = null)
-    {
-        $profiles = Profile::whereIn('id', function($query) use ($idPlan) {
-            $query->select("profile_id");
-            $query->from("plan_profile");
-            $query->whereRaw("plan_id = {$idPlan}");
-        })
-        // filter
-        ->where(function($queryFilter) use ($filter){
-                if ($filter) {
+    {   
+        if ($filter) {
+            echo 'filtro';
+            $profiles = Profile::whereIn('id', function($query) use ($idPlan) {
+                $query->select("profile_id");
+                $query->from("plan_profile");
+                $query->whereRaw("plan_id = {$idPlan}");
+            })
+            // filter
+            ->where(function($queryFilter) use ($filter){
                     $queryFilter->where('name', 'like', "%{$filter}%");
-                    $queryFilter->orWhere('description', 'like', "%{$filter}%");
-                }
+                })
+                ->paginate();
+        } else {
+            echo ' sem filtro';
+            $profiles = Profile::whereIn('id', function($query) use ($idPlan) {
+                $query->select("profile_id");
+                $query->from("plan_profile");
+                $query->whereRaw("plan_id = {$idPlan}");
+            })
+            // filter
+            ->where(function($queryFilter) use ($filter){
+                $queryFilter->where('name', 'like', "%{$filter}%");
+                $queryFilter->orWhere('description', 'like', "%{$filter}%");
+                
             })
             ->paginate();
+        }
+        
         return $profiles;
     }
 

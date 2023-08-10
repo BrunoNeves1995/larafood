@@ -9,7 +9,7 @@
         <li class="breadcrumb-item"><a href="{{ route('plans.profiles.index', $plan->id) }}">Planos</a></li>
         <li class="breadcrumb-item active" class="active"><a href="{{ route('plans.profiles.create', $plan->id) }}">Desponiveis</a></li>
     </ol>
-    <h1>Permissões Disponiveis Para Plano: <strong>#{{ $plan->name }}{{-- </strong> <a href="{{ route('profiles.permissions.available', $profile->id)}}" class="btn btn-dark btn-sm" >Adicionar <i class="fas fa-plus fa-flip-horizontal" style="color: #2e4b57;"></i></a></h1> --}}
+    <h1>Permissões Disponiveis Para Plano: <strong>#{{ $plan->name }}
 @endsection
 
         @section('content')

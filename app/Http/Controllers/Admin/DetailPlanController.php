@@ -78,7 +78,6 @@ class DetailPlanController extends Controller
     {
         $plan = $this->repositoryPlan->find($idPlan);
         $detail = $this->repository->find($id);
-
         if (!$plan || !$detail) {
             return redirect()->back();
         }

@@ -7,7 +7,7 @@
         <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
         <li class="breadcrumb-item"><a href="{{ route('plans.index') }}">Planos</a></li>
         <li class="breadcrumb-item"><a href="{{ route('plans.show', $plan->id) }}">{{$plan->name}}</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('plans.details.show', [$plan->id]) }}">Detalhe</a></li>
+        {{-- <li class="breadcrumb-item"><a href="{{ route('plans.details.show', [$plan->id, $plan[0]->id]) }}">Detalhe</a></li> --}}
         <li class="breadcrumb-item active" class="active"><a href="{{ route('plans.details.create', [$plan->id]) }}">novo</a></li>
     </ol>
 

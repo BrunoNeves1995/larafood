@@ -13,11 +13,11 @@ Route::prefix('admin')->group(function () {
     /* *
     *   Routes Plans x Profiles 
     */
-    Route::get('profiles/{profile}/plans', [PlanProfileController::class, 'plans'])->name('profiles.plans.index');
-    Route::get('profiles/{profile}/plans/create', [PlanProfileController::class, 'plansAvailable'])->name('profiles.plans.create');
-    Route::post('profiles/{profile}/plans', [PlanProfileController::class, 'addProfilePermission'])->name('profiles.plans.store');
-    Route::any('profiles/{profile}/plans/create/search', [PlanProfileController::class, 'filterplansAvailable'])->name('profiles.plans.search');
-    Route::get('profiles/{profile}/plans/{permission}/detach', [PlanProfileController::class, 'detachProfilePermission'])->name('profiles.plans.detach');
+    Route::get('plans/{plans}/profiles', [PlanProfileController::class, 'profiles'])->name('plans.profiles.index');
+    Route::get('plans/{plans}/profiles/create', [PlanProfileController::class, 'profileUnlinkedPlan'])->name('plans.profiles.create');
+    Route::post('plans/{plans}/profiles', [PlanProfileController::class, 'addProfilePlan'])->name('plans.profiles.store');
+    Route::any('plans/{plans}/profiles/create/search', [PlanProfileController::class, 'filterprofilesAvailable'])->name('plans.profiles.search');
+    Route::get('plans/{plans}/profiles/{profiles}/detach', [PlanProfileController::class, 'detachProfilePlan'])->name('plans.profiles.detach');
 
     /* *
     *   Routes Profiles x Permissions 

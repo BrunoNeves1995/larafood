@@ -18,9 +18,50 @@ class Plan extends Model
         return $this->hasMany(DetailPlan::class);
     }
 
-    public function profiles() : HasMany
+    public function profiles() 
     {
-        return $this->hasMany(Profile::class);
+        return $this->belongsToMany(Profile::class);
+    }
+    /** 
+    * Get plan not linked with this profile
+    */
+    public function plansNotLinkedProfile($idProfile, $filter = null)
+    {
+        $permissions = $this->whereNotIn('id', function($query) use ($idProfile) {
+            $query->select("plan_id");
+            $query->from("plan_profile");
+            $query->whereRaw("profile_id = {$idProfile}");
+        })
+        // filter
+        ->where(function($queryFilter) use ($filter){
+                if ($filter) {
+                    $queryFilter->where('name', 'like', "%{$filter}%");
+                    $queryFilter->orWhere('description', 'like', "%{$filter}%");
+                }
+            })
+            ->paginate();
+        return $permissions;
+    }
+
+    /** 
+    * Get plan linked with this profile
+    */
+    public function filterPlansAvailableSearch($idPlan, $filter = null)
+    {
+        $profiles = Profile::whereIn('id', function($query) use ($idPlan) {
+            $query->select("profile_id");
+            $query->from("plan_profile");
+            $query->whereRaw("plan_id = {$idPlan}");
+        })
+        // filter
+        ->where(function($queryFilter) use ($filter){
+                if ($filter) {
+                    $queryFilter->where('name', 'like', "%{$filter}%");
+                    $queryFilter->orWhere('description', 'like', "%{$filter}%");
+                }
+            })
+            ->paginate();
+        return $profiles;
     }
 
     public function search($filters = null)

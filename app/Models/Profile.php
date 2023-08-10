@@ -25,15 +25,15 @@ class Profile extends Model
         return $this->belongsToMany(Plan::class);
     }
 
-    /** 
-    * Get Permissions not linked with this profile
+     /** 
+    * Get profiles not linked with this plan
     */
-    public function permissionsNotLinkedProfile($idProfile, $filter = null)
+    public function profilesNotLinkedPlan($idProfile, $filter = null)
     {
-        $permissions = Permission::whereNotIn('id', function($query) use ($idProfile) {
-            $query->select("permission_id");
-            $query->from("permission_profile");
-            $query->whereRaw("profile_id = {$idProfile}");
+        $permissions = $this->whereNotIn('id', function($query) use ($idProfile) {
+            $query->select("profile_id");
+            $query->from("plan_profile");
+            $query->whereRaw("plan_id = {$idProfile}");
         })
         // // filter
         // ->where(function($queryFilter) use ($filter){

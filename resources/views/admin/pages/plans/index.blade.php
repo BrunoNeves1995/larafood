@@ -25,7 +25,7 @@
                 <tr>
                     <th>Nome</th>
                     <th>Preço</th>
-                    <th width=229>Ações</th>
+                    <th width=269>Ações</th>
                 </tr>
                 <tbody>
                     @foreach ($plans as $plan)
@@ -36,8 +36,8 @@
                                 <a href="{{ route('plans.details.index', $plan->id)}}" class="btn btn-info btn-sm me-md-2">Detalhes Plano</a>
                                 <a href="{{ route('plans.show', $plan->id)}}" class="btn btn-secondary btn-sm me-md-2">Ver</a>
                                 <a href="{{ route('plans.edit', [$plan->id])}}" class="btn btn-warning btn-sm me-md-2">Editar</a>
+                                <a href="{{ route('plans.profiles.index', $plan->id)}}" class="btn btn-info btn-sm me-md-2"><i class="fas fa-user-lock fa-flip-horizontal"></i></a>
                               </th>
-                            
                         </tr>
                     @endforeach
                 </tbody>

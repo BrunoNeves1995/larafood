@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('profile_plan', function (Blueprint $table) {
+        Schema::create('plan_profile', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Profile::class)->references('id')->on('profiles')->onDelete('cascade');
             $table->foreignIdFor(Plan::class)->references('id')->on('plans')->onDelete('cascade');

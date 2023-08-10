@@ -59,7 +59,7 @@ class Plan extends Model
             ->where(function($queryFilter) use ($filter){
                     $queryFilter->where('name', 'like', "%{$filter}%");
                 })
-                ->paginate();
+                ->paginate(4);
         } else {
             echo ' sem filtro';
             $profiles = Profile::whereIn('id', function($query) use ($idPlan) {

@@ -15,7 +15,7 @@ class SiteController extends Controller
 
     public function index() 
     {   
-        $plans = $this->repositoryPlan->with('details')->get();
+        $plans = $this->repositoryPlan->with('details')->orderBy('price', 'asc')->get();
         return view('site.pages.home.index', compact('plans'));
     }
 }

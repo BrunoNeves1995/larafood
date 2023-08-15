@@ -29,6 +29,6 @@ return new class extends Migration
         //     $table->dropForeign('details_plan_plan_id_foreign');
         // });
 
-        Schema::dropIfExists('detail_plans');
+        Schema::dropIfExists('details_plan');
     }
 };

@@ -140,6 +140,14 @@ a:hover {
 .pricingTable.purple .price-value{
     color: #9733EE;
 }
+
+.price-value .duration {
+    margin-top: 19px;
+}
+
+/* .inner-content .price-value {
+    width: 238px;
+} */
 @media only screen and (max-width: 990px){
     .pricingTable{ margin: 0 25px 40px; }
 }

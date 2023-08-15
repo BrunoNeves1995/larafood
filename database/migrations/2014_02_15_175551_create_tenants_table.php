@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('url')->unique();
             $table->string('email')->unique();
-            $table->string('logo')->unique();
+            $table->string('logo')->nullable();
 
             // status tenant (se tiver invativo 'N' ele perde o acesso do sitema)
-            $table->enum('active', ['Y', 'N']);
+            $table->enum('active', ['Y', 'N'])->default('Y');
 
             // subscription
             $table->date('subscription')->nullable();  /* data que se inscreveu */
